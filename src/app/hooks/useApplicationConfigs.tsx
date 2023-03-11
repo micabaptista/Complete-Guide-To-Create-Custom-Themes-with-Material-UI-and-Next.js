@@ -1,41 +1,62 @@
-import {createContext, useCallback, useContext} from "react";
-import {useRouter} from "next/router";
+import React, {createContext, useCallback, useContext, useEffect, useState} from "react";
 import {useLocalStorage} from "@/app/hooks/useLocalStorage";
 import {THEME, Theme} from "../../../theme/constants";
 
-interface AuthenticationProviderProps {
+interface ApplicationConfigsProps  {
   children: JSX.Element;
 }
 
 interface ApplicationConfigsContextInterface {
-  changeTheme: () => void;
+  changeTheme: (theme: Theme) => void;
   theme: Theme;
+  systemChanged: boolean;
 }
 
 export const defaultApplicationConfigsContext: ApplicationConfigsContextInterface = {
   theme: THEME.LIGHT,
-  changeTheme: () => void 0,
+  changeTheme: (theme: Theme) => void 0,
+  systemChanged: false
 };
+
+const MEDIA = '(prefers-color-scheme: dark)'
 
 export const ApplicationConfigsContext = createContext(defaultApplicationConfigsContext);
 
 const useApplicationConfigs = () => useContext(ApplicationConfigsContext);
 
-const ApplicationConfigs = ({children}: AuthenticationProviderProps) => {
+const ApplicationConfigs = ({children}: ApplicationConfigsProps) => {
 
   const defaultConfig = {
-    theme: THEME.LIGHT
+    theme: THEME.SYSTEM
   };
 
   const [config, setConfig] = useLocalStorage("config", defaultConfig);
+  const [systemChanged, setSystemChanged] = useState(false);
 
-  const changeTheme = useCallback(() => {
-    if (config.theme === THEME.LIGHT) {
-      setConfig({...config, theme: THEME.DARK})
-    } else {
-      setConfig({...config, theme: THEME.LIGHT})
-    }
-  }, [config, setConfig])
+  const changeTheme = useCallback(
+    (theme: Theme) => {
+      setConfig({...config, theme})
+    },
+    [config.theme]
+  )
+
+  const handleMediaQuery = useCallback(() => {
+      if (config.theme === THEME.SYSTEM) {
+        setSystemChanged(prevState => !prevState);
+      }
+    },
+    [config.theme]
+  )
+
+  // Always listen to System preference
+  useEffect(() => {
+    const media = window.matchMedia(MEDIA)
+
+    // Intentionally use deprecated listener methods to support iOS & old browsers
+    media.addListener(handleMediaQuery)
+
+    return () => media.removeListener(handleMediaQuery)
+  }, [handleMediaQuery])
 
 
   return (
@@ -43,6 +64,7 @@ const ApplicationConfigs = ({children}: AuthenticationProviderProps) => {
       value={{
         theme: config.theme,
         changeTheme,
+        systemChanged
       }}
     >
       {children}
@@ -51,3 +73,5 @@ const ApplicationConfigs = ({children}: AuthenticationProviderProps) => {
 };
 
 export {ApplicationConfigs, useApplicationConfigs};
+
+

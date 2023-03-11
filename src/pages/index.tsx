@@ -1,14 +1,36 @@
-import {Button} from "@mui/material";
+import {Button, Card, CardActions, CardContent, Typography} from "@mui/material";
 import {useApplicationConfigs} from "@/app/hooks/useApplicationConfigs";
 import {THEME} from "../../theme/constants";
+import classes from './index.module.css'
 
 export default function Home() {
 
-  const {changeTheme,} = useApplicationConfigs()
+  const {changeTheme} = useApplicationConfigs()
 
   return (
-    <article>
-      <Button onClick={changeTheme}>Click here</Button>
+    <article className={classes.home}>
+      <h1 className={classes.title}>Complete Guide To Create Custom Themes with Material-UI and Next.js</h1>
+      <div className={classes.buttons}>
+        <Button className={classes.button} onClick={() => changeTheme(THEME.DARK)}>Dark</Button>
+        <Button className={classes.button} onClick={() => changeTheme(THEME.LIGHT)}>Light</Button>
+        <Button className={classes.button} onClick={() => changeTheme(THEME.SYSTEM)}>System</Button>
+      </div>
+
+      <h2>Examples</h2>
+      <div className={classes.cards}>
+        <Card>
+          <CardContent>
+            <Typography gutterBottom variant="h5" component="div">
+              Lizard
+            </Typography>
+            <Typography variant="body2">
+              Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the
+              industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and
+              scrambled it to make a type specimen book.
+            </Typography>
+          </CardContent>
+        </Card>
+      </div>
     </article>
   )
 }

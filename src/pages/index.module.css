@@ -1,0 +1,22 @@
+.title{
+  display: flex;
+  justify-content: center;
+}
+
+.buttons{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100%;
+}
+
+.button{
+  margin: 1rem;
+}
+
+.cards{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100%;
+}

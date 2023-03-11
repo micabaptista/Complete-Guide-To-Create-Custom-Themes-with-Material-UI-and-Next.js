@@ -1,9 +1,9 @@
-import {ThemeProvider} from "@mui/material";
-import {createContext} from "react";
+import {Theme as ThemeMaterialUI, ThemeProvider} from "@mui/material";
+import {createContext, useCallback, useEffect, useState} from "react";
 import {createCustomTheme} from "../../../theme";
 import {THEME, Theme} from "../../../theme/constants";
-import {useLocalStorage} from "@/app/hooks/useLocalStorage";
 import {useApplicationConfigs} from "@/app/hooks/useApplicationConfigs";
+import {getSystemTheme} from "@/app/helper/index";
 
 interface ApplicationConfigsContextInterface {
   theme: Theme;
@@ -27,10 +27,7 @@ export const ThemeContext = createContext(defaultThemeContext);
 
 export const ThemeContextProvider = (props: { children: JSX.Element }) => {
 
-  const defaultConfig = {
-    THEME: THEME.LIGHT
-  }
-  const {theme} = useApplicationConfigs();
+  const {theme, systemChanged} = useApplicationConfigs();
 
   const darkTheme = createCustomTheme({
     theme: THEME.DARK,
@@ -40,10 +37,27 @@ export const ThemeContextProvider = (props: { children: JSX.Element }) => {
     theme: THEME.LIGHT,
   });
 
+  const [themeResolved, setThemeResolved] = useState<ThemeMaterialUI>(lightTheme);
+
+  useEffect(() => {
+    if (theme === THEME.SYSTEM) {
+      const themeResolved = getSystemTheme();
+      if (themeResolved === THEME.DARK) {
+        setThemeResolved(darkTheme)
+      } else {
+        setThemeResolved(lightTheme);
+      }
+      document.documentElement.style.colorScheme = themeResolved
+    } else {
+      theme === THEME.DARK ? setThemeResolved(darkTheme) : setThemeResolved(lightTheme);
+      document.documentElement.style.colorScheme = theme
+    }
+  }, [theme, systemChanged])
+
 
   return (
     <ThemeContext.Provider value={{theme}}>
-      <ThemeProvider theme={theme === THEME.LIGHT ? lightTheme : darkTheme}>{props.children}</ThemeProvider>
+      <ThemeProvider theme={themeResolved}>{props.children}</ThemeProvider>
     </ThemeContext.Provider>
   );
 };

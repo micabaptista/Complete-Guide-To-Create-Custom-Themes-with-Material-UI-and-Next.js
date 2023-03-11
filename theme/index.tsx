@@ -9,11 +9,25 @@ export const baseOptions: ThemeOptions = {
   }
 }
 
-const MAIN_COLOR_LIGHT_THEME = '#1A2036'
-const SECONDARY_COLOR_LIGHT_THEME = '#f4f5f7'
+const __color_primary = '#f4f5f7'
+const __color_neutral = '#FFFFFF'
+const __color_text = '#121212'
+const __color_secondary = '#f4f5f7'
+const __color_info = '#f4f5f7'
+const __color_warning = '#f4f5f7'
+const __color_success = '#f4f5f7'
+const __color_background = '#FEFEFE'
 
-const MAIN_COLOR_DARK_THEME = '#f4f5f7'
-const SECONDARY_COLOR_DARK_THEME = '#1A2036'
+
+const __dark_color_primary = '#1E1E1E'
+const __dark_color_neutral = '#1E1E1E'
+const __dark_color_text = '#FFFFFF'
+const __dark_color_secondary = '#f4f5f7'
+const __dark_color_info = '#f4f5f7'
+const __dark_color_warning = '#f4f5f7'
+const __dark_color_success = '#f4f5f7'
+const __dark_color_background = '#121212'
+
 
 export const themesOptions: Record<string, ThemeOptions> = {
   [THEME.LIGHT]: {
@@ -21,8 +35,16 @@ export const themesOptions: Record<string, ThemeOptions> = {
       MuiButton: {
         styleOverrides: {
           root: {
-            backgroundColor: MAIN_COLOR_LIGHT_THEME,
-            color: SECONDARY_COLOR_LIGHT_THEME
+            backgroundColor: __color_primary,
+            color: __color_text
+          }
+        }
+      },
+      MuiCard: {
+        styleOverrides: {
+          root: {
+            backgroundColor: __color_neutral,
+            color: __color_text
           }
         }
       }
@@ -33,25 +55,30 @@ export const themesOptions: Record<string, ThemeOptions> = {
       MuiButton: {
         styleOverrides: {
           root: {
-            backgroundColor: MAIN_COLOR_DARK_THEME,
-            color: SECONDARY_COLOR_DARK_THEME
+            backgroundColor: __dark_color_primary,
+            color: __dark_color_text
           },
         },
+      },
+      MuiCard: {
+        styleOverrides: {
+          root: {
+            backgroundColor: __dark_color_neutral,
+            color: __dark_color_text,
+          }
+        }
       }
     }
   }
 }
 
 export const createCustomTheme = (config: ThemeConfig = {}): Theme => {
-  let themeOptions = themesOptions[config.theme || THEME.DARK];
+  let themeOptions = themesOptions[config.theme || THEME.SYSTEM];
 
-  console.log(themeOptions)
   if (!themeOptions) {
     console.warn(new Error(`The theme ${config.theme} is not valid`));
     themeOptions = themesOptions[THEME.LIGHT];
   }
-  return createTheme(
-    merge({}, baseOptions, themeOptions,)
-  );
+  return createTheme(merge({}, baseOptions, themeOptions,));
 };
 
