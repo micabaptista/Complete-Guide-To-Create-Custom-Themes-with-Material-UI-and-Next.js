@@ -14,7 +14,7 @@ interface ApplicationConfigsContextInterface {
 
 export const defaultApplicationConfigsContext: ApplicationConfigsContextInterface = {
   theme: THEME.LIGHT,
-  changeTheme: (theme: Theme) => void 0,
+  changeTheme: (theme: Theme) => {},
   systemChanged: false
 };
 

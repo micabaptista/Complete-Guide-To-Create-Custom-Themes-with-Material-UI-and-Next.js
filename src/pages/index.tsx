@@ -20,7 +20,7 @@ export default function Home() {
       <div className={classes.cards}>
         <Card>
           <CardContent>
-            <Typography gutterBottom variant="h5" component="div">
+            <Typography gutterBottom variant="h5">
               Lizard
             </Typography>
             <Typography variant="body2">

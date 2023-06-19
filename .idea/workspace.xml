@@ -2,17 +2,16 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="3dde8bff-17b7-4ee1-82f8-f1a9a166faed" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/src/app/helper/index.ts" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/pages/index.module.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/sonarlint/issuestore/0/5/052f85edfc3fbb9d129530f0f8b191ff6c16f7ce" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/sonarlint/issuestore/7/0/7030d0b2f71b999ff89a343de08c414af32fc93a" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/sonarlint/issuestore/8/e/8ec9a00bfd09b3190ac6b22251dbb1aa95a0579d" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/sonarlint/issuestore/index.pb" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/sonarlint/issuestore/index.pb" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/app/globals.css" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/globals.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/app/helper/ThemeContextProvider.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/helper/ThemeContextProvider.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/package.json" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/app/hooks/useApplicationConfigs.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/hooks/useApplicationConfigs.tsx" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/app/hooks/useLocalStorage.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/hooks/useLocalStorage.ts" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/pages/index.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/index.tsx" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/theme/constants.ts" beforeDir="false" afterPath="$PROJECT_DIR$/theme/constants.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/theme/index.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/theme/index.tsx" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -102,7 +101,12 @@
       <workItem from="1677512229213" duration="2626000" />
       <workItem from="1677581736091" duration="1421000" />
       <workItem from="1678478790782" duration="2486000" />
-      <workItem from="1678561825446" duration="5728000" />
+      <workItem from="1678561825446" duration="6745000" />
+      <workItem from="1681818821340" duration="4550000" />
+      <workItem from="1681914706840" duration="3529000" />
+      <workItem from="1681980896317" duration="49000" />
+      <workItem from="1686908830751" duration="450000" />
+      <workItem from="1686909523164" duration="833000" />
     </task>
     <servers />
   </component>

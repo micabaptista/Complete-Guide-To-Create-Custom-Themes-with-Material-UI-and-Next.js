@@ -3,9 +3,8 @@ import {useCallback, useEffect, useState} from "react";
 const useLocalStorage = <T>(key: string, defaultValue: T): [T, (value: T) => void] => {
   const [value, setValue] = useState<T>(() => {
     try {
-      return JSON.parse(window.localStorage.getItem(key)!) ?? defaultValue;
+      return JSON.parse(window.localStorage.getItem(key)) ?? defaultValue;
     } catch (error) {
-      console.error(`Error getting localStorage item: ${error}`);
       return defaultValue;
     }
   });
